@@ -14,8 +14,9 @@ vim.opt.expandtab = true
 
 -- Show trailing characters
 vim.opt.list = true
-vim.opt.listchars = { trail = " " }
+vim.opt.listchars = { trail = " ", tab = "║ " }
 vim.api.nvim_set_hl(0, 'Whitespace', { bg = 'DarkRed' })
+vim.api.nvim_set_hl(0, 'Visual', { fg = '#e2ccfe', bg = '#c398fe' })
 
 -- Don't allow arrow keys in insert mode
 vim.keymap.set('i', '<up>', '<nop>')
