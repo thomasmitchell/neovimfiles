@@ -30,6 +30,9 @@ vim.keymap.set('n', 'k', 'gk')
 
 vim.keymap.set('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float(nil, { border = "rounded" })<cr>')
 
+--stop shifting when diagnostic signs appear/disappear in gutter
+vim.opt.signcolumn = "yes"
+
 --autoformat golang on save
 local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
