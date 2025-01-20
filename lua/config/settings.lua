@@ -29,3 +29,13 @@ vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
 
 vim.keymap.set('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float(nil, { border = "rounded" })<cr>')
+
+--autoformat golang on save
+local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*.go",
+  callback = function()
+   require('go.format').goimports()
+  end,
+  group = format_sync_grp,
+})
