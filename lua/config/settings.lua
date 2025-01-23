@@ -5,6 +5,7 @@ vim.opt.smartcase = true
 vim.opt.swapfile = true
 vim.opt.title = true
 vim.opt.scrolloff=3
+vim.opt.splitright=true
 
 -- Tab stuff...
 vim.opt.tabstop = 2
@@ -28,7 +29,11 @@ vim.keymap.set('i', '<left>', '<nop>')
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
 
-vim.keymap.set('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float(nil, { border = "rounded" })<cr>')
+-- don't open help when I fat-finger while hitting ESC
+vim.keymap.set('n', '<F1>', '<nop>')
+
+-- show diagnostic in full - helpful for when it doesn't fit inline
+vim.keymap.set('n', '<leader>di', '<cmd>lua vim.diagnostic.open_float(nil, { border = "rounded" })<cr>')
 
 --stop shifting when diagnostic signs appear/disappear in gutter
 vim.opt.signcolumn = "yes"
@@ -41,4 +46,27 @@ vim.api.nvim_create_autocmd("BufWritePre", {
    require('go.format').goimports()
   end,
   group = format_sync_grp,
+})
+
+require("nvim-treesitter.configs").setup({
+  -- A list of parser names, or "all" (the listed parsers MUST always be installed)
+  ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "go", "python", "html", "rust" },
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  highlight = { enable = true },
+  indent = { enable = true },
+
+  textobjects = {
+    lsp_interop = {
+      enable = true,
+      border = 'rounded',
+      floating_preview_opts = {},
+      peek_definition_code = {
+        ["<leader>df"] = "@function.outer",
+        ["<leader>dF"] = "@class.outer"
+      }
+    },
+  },
 })
