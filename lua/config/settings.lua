@@ -30,7 +30,7 @@ vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
 
 -- don't open help when I fat-finger while hitting ESC
-vim.keymap.set('n', '<F1>', '<nop>')
+vim.keymap.set('!', '<F1>', '<nop>')
 
 -- show diagnostic in full - helpful for when it doesn't fit inline
 vim.keymap.set('n', '<leader>di', '<cmd>lua vim.diagnostic.open_float(nil, { border = "rounded" })<cr>')
