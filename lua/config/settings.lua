@@ -19,11 +19,15 @@ vim.opt.listchars = { trail = " ", tab = "║ " }
 vim.api.nvim_set_hl(0, 'Whitespace', { bg = 'DarkRed' })
 vim.api.nvim_set_hl(0, 'Visual', { fg = '#e2ccfe', bg = '#c398fe' })
 
--- Don't allow arrow keys in insert mode
-vim.keymap.set('i', '<up>', '<nop>')
-vim.keymap.set('i', '<down>', '<nop>')
-vim.keymap.set('i', '<right>', '<nop>')
-vim.keymap.set('i', '<left>', '<nop>')
+-- column length marker
+vim.opt.colorcolumn = '80'
+vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#465166' })
+
+-- Don't allow arrow keys in normal mode
+vim.keymap.set('n', '<up>', '<nop>')
+vim.keymap.set('n', '<down>', '<nop>')
+vim.keymap.set('n', '<right>', '<nop>')
+vim.keymap.set('n', '<left>', '<nop>')
 
 -- when going between lines, respect lines created by wrapped text
 vim.keymap.set('n', 'j', 'gj')
@@ -31,6 +35,7 @@ vim.keymap.set('n', 'k', 'gk')
 
 -- don't open help when I fat-finger while hitting ESC
 vim.keymap.set('!', '<F1>', '<nop>')
+vim.keymap.set({'n', 'v'}, '<F1>', '<nop>')
 
 -- show diagnostic in full - helpful for when it doesn't fit inline
 vim.keymap.set('n', '<leader>di', '<cmd>lua vim.diagnostic.open_float(nil, { border = "rounded" })<cr>')
