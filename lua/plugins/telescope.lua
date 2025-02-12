@@ -10,6 +10,8 @@ return {
     branch = '0.1.x',
     keys = {
       { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'Telescope find files' },
+      { '<leader>fa', '<cmd>lua require("telescope.builtin").find_files({hidden=true})<cr>', desc = 'Telescope find hidden files' },
+      { '<leader>fi', '<cmd>lua require("telescope.builtin").find_files({no_ignore=true, no_ignore_parent=true})<cr>', desc = 'Telescope find gitignored files' },
       { '<leader>fg', '<cmd>Telescope live_grep<cr>', desc = 'Telescope live grep' },
       { '<leader>fb', '<cmd>Telescope buffers<cr>', desc = 'Telescope buffers' },
       { '<leader>fh', '<cmd>Telescope help_tags<cr>', desc = 'Telescope help tags' },
