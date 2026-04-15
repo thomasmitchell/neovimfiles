@@ -6,6 +6,8 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
+    "hrsh7th/cmp-vsnip",
+    "hrsh7th/vim-vsnip",
   },
   -- Not all LSP servers add brackets when completing a function.
   -- To better deal with this, LazyVim adds a custom option to cmp,
@@ -21,6 +23,11 @@ return {
     local cmp = require("cmp")
 
     return {
+      snippets = {
+        expand = function(args)
+          vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+        end,
+      },
       auto_brackets = {}, -- configure any filetype to auto add brackets
       window = {
          completion = cmp.config.window.bordered(),
@@ -57,6 +64,7 @@ return {
         },
         sources = {
           { name = 'nvim_lsp' },
+          { name = 'vsnip' },
           { name = 'buffer' },
           { name = 'path' },
         },

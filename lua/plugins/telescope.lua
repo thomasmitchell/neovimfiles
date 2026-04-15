@@ -7,7 +7,7 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 
 return {
     'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
+    version = '*',
     keys = {
       { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'Telescope find files' },
       { '<leader>fa', '<cmd>lua require("telescope.builtin").find_files({hidden=true})<cr>', desc = 'Telescope find hidden files' },
