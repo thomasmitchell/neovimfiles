@@ -20,7 +20,7 @@ vim.api.nvim_set_hl(0, 'Whitespace', { bg = 'DarkRed' })
 vim.api.nvim_set_hl(0, 'Visual', { fg = '#e2ccfe', bg = '#c398fe' })
 
 -- column length marker
-vim.opt.colorcolumn = '80'
+vim.opt.colorcolumn = '90'
 vim.api.nvim_set_hl(0, 'ColorColumn', { bg = '#465166' })
 
 -- Don't allow arrow keys in normal mode
@@ -39,6 +39,7 @@ vim.keymap.set({'n', 'v'}, '<F1>', '<nop>')
 
 -- show diagnostic in full - helpful for when it doesn't fit inline
 vim.keymap.set('n', '<leader>di', '<cmd>lua vim.diagnostic.open_float(nil, { border = "rounded" })<cr>')
+vim.keymap.set('n', '<leader>dg', '<cmd>GoDoc<cr>')
 
 --stop shifting when diagnostic signs appear/disappear in gutter
 vim.opt.signcolumn = "yes"
@@ -53,8 +54,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = format_sync_grp,
 })
 
+vim.keymap.set('n', 'gd', '<CMD>Peekr definitions<CR>')
+vim.keymap.set('n', 'gr', '<CMD>Peekr references<CR>')
+vim.keymap.set('n', 'gi', '<CMD>Peekr implementations<CR>')
+vim.keymap.set('n', 'gD', '<CMD>Peekr type_definitions<CR>')
+
+-- enable peek definition support
 --[[
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter.config").setup({
   textobjects = {
     lsp_interop = {
       enable = true,
